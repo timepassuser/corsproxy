@@ -24,20 +24,20 @@ def hello(url):
     # elif "Corsproxy" not in request.headers.keys():
     #     return "Invalid request"
     else:
-        try:
-            r = requests.get(url, timeout=0.5)
-            if r.status_code == requests.codes.ok:
-                response = make_response(r.text)
-            else:
-                print(f"Something went wrong, status code {r.status_code}")
-                response = make_response(f"Something went wrong, status code {r.status_code}")
-            
-        except Exception as exception:
-            print(f"An error occured {exception}")
-            response = make_response(f"An error occured {exception}")
-        finally:
-            response.access_control_allow_origin = '*'
+        # try:
+        #     r = requests.get(url, timeout=0.5)
+        #     if r.status_code == requests.codes.ok:
+        #         response = make_response(r.text)
+        #     else:
+        #         print(f"Something went wrong, status code {r.status_code}")
+        #         response = make_response(f"Something went wrong, status code {r.status_code}")
+        # except Exception as exception:
+        #     print(f"An error occured {exception}")
+        #     response = make_response(f"An error occured {exception}")
+        # finally:
+        response = make_response("This is just to show it works")
+        response.access_control_allow_origin = '*'
             # response.access_control_allow_headers = ["corsproxy"]
-            return response
+        return response
 
     
