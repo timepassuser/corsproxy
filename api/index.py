@@ -10,7 +10,7 @@ def hello():
 
     if request.method == "OPTIONS":
         response = make_response()
-        response.access_control_allow_origin = '*'
+        response.access_control_allow_origin = 'https://timepassuser.github.io'
         response.access_control_allow_headers = ["corsproxy", "urltofetch"]
         print(f"Sending response to options\n{response.headers}")
         return response
@@ -42,7 +42,7 @@ def hello():
             # response.access_control_allow_headers = ["corsproxy", "urlToFetch"]
             # return response
         # response = make_response("This is just to show it works")
-    response.access_control_allow_origin = '*'
+    response.access_control_allow_origin = 'https://timepassuser.github.io'
     response.access_control_allow_headers = ["corsproxy", "urltofetch"]
     return response
 
