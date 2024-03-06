@@ -10,7 +10,7 @@ def hello(url):
 
     if request.method == "OPTIONS":
         response = make_response()
-        response.access_control_allow_origin = 'https://timepassuser.github.io'
+        response.access_control_allow_origin = '*'
         response.access_control_allow_headers = ["corsproxy"]
         print(f"Sending response to options\n{response.headers}")
         return response
@@ -31,7 +31,7 @@ def hello(url):
             else:
                 print(f"Something went wrong, status code {r.status_code}")
                 response = make_response(f"Something went wrong, status code {r.status_code}")
-            response.access_control_allow_origin = 'https://timepassuser.github.io'
+            response.access_control_allow_origin = '*'
             response.access_control_allow_headers = ["corsproxy"]
             return response
         except Exception as exception:
