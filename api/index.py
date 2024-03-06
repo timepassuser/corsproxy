@@ -27,10 +27,13 @@ def hello(url):
         try:
             r = requests.get(url, timeout=0.5)
             if r.status_code == requests.codes.ok:
-                return r.text
+                response = make_response(r.text)
             else:
                 print(f"Something went wrong, status code {r.status_code}")
-                return f"Something went wrong, status code {r.status_code}"
+                response = make_response(f"Something went wrong, status code {r.status_code}")
+            response.access_control_allow_origin = 'https://timepassuser.github.io'
+            response.access_control_allow_headers = ["corsproxy"]
+            return response
         except Exception as exception:
             print(f"An error occured {exception}")
             return f"An error occured {exception}"
