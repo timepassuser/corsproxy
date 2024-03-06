@@ -11,7 +11,7 @@ def hello(url):
     if request.method == "OPTIONS":
         response = make_response()
         response.access_control_allow_origin = '*'
-        response.access_control_allow_headers = ["corsproxy"]
+        # response.access_control_allow_headers = ["corsproxy"]
         print(f"Sending response to options\n{response.headers}")
         return response
 
@@ -37,7 +37,7 @@ def hello(url):
             response = make_response(f"An error occured {exception}")
         finally:
             response.access_control_allow_origin = '*'
-            response.access_control_allow_headers = ["corsproxy"]
+            # response.access_control_allow_headers = ["corsproxy"]
             return response
 
     
