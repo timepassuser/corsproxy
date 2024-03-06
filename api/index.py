@@ -31,11 +31,13 @@ def hello(url):
             else:
                 print(f"Something went wrong, status code {r.status_code}")
                 response = make_response(f"Something went wrong, status code {r.status_code}")
+            
+        except Exception as exception:
+            print(f"An error occured {exception}")
+            response = make_response(f"An error occured {exception}")
+        finally:
             response.access_control_allow_origin = '*'
             response.access_control_allow_headers = ["corsproxy"]
             return response
-        except Exception as exception:
-            print(f"An error occured {exception}")
-            return f"An error occured {exception}"
 
     
