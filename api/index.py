@@ -21,8 +21,8 @@ def hello(url):
         return "Invalid url"
     elif ".html" not in url:
         return "Invalid url"
-    elif "Corsproxy" not in request.headers.keys():
-        return "Invalid request"
+    # elif "Corsproxy" not in request.headers.keys():
+    #     return "Invalid request"
     else:
         try:
             r = requests.get(url, timeout=0.5)
