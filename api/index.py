@@ -4,14 +4,17 @@ from flask import make_response
 import requests
 app = Flask(__name__)
 
+allowedOrigin = 'https://timepassuser.github.io'
+allowedHeaders = ["corsproxy", "urltofetch"]
+
 @app.route("/", methods=["GET", "OPTIONS"])
 def hello():
     print('\n\nNew request here\n', request, '\n', request.headers)
 
     if request.method == "OPTIONS":
         response = make_response()
-        response.access_control_allow_origin = 'https://timepassuser.github.io'
-        response.access_control_allow_headers = ["corsproxy", "urltofetch"]
+        response.access_control_allow_origin = allowedOrigin
+        response.access_control_allow_headers = allowedHeaders
         print(f"Sending response to options\n{response.headers}")
         return response
 
@@ -28,7 +31,7 @@ def hello():
             response = make_response("Invalid url")
         else:
             try:
-                r = requests.get(url, timeout=0.5)
+                r = requests.get(url, timeout=1)
                 if r.status_code == requests.codes.ok:
                     response = make_response(r.text)
                 else:
@@ -42,6 +45,6 @@ def hello():
             # response.access_control_allow_headers = ["corsproxy", "urlToFetch"]
             # return response
         # response = make_response("This is just to show it works")
-    response.access_control_allow_origin = 'https://timepassuser.github.io'
-    response.access_control_allow_headers = ["corsproxy", "urltofetch"]
+    response.access_control_allow_origin = allowedOrigin
+    response.access_control_allow_headers = allowedHeaders
     return response
