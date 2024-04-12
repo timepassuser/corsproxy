@@ -4,7 +4,7 @@ from flask import make_response
 import requests
 app = Flask(__name__)
 
-allowedOrigin = 'https://timepassuser.github.io'
+allowedOrigin = 'https://timepassuser.github.io/'
 allowedHeaders = ["corsproxy", "urltofetch"]
 
 @app.route("/", methods=["GET", "OPTIONS"])
@@ -31,7 +31,7 @@ def hello():
             response = make_response("Invalid url")
         else:
             try:
-                r = requests.get(url, timeout=1)
+                r = requests.get(url, timeout=2)
                 if r.status_code == requests.codes.ok:
                     response = make_response(r.text)
                 else:
@@ -40,11 +40,6 @@ def hello():
             except Exception as exception:
                 print(f"An error occured {exception}")
                 response = make_response(f"An error occured {exception}")
-        # finally:
-            # response.access_control_allow_origin = '*'
-            # response.access_control_allow_headers = ["corsproxy", "urlToFetch"]
-            # return response
-        # response = make_response("This is just to show it works")
     response.access_control_allow_origin = allowedOrigin
     response.access_control_allow_headers = allowedHeaders
     return response
