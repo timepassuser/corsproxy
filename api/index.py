@@ -4,7 +4,7 @@ from flask import make_response
 import requests
 app = Flask(__name__)
 
-allowedOrigin = 'https://timepassuser.github.io/'
+allowedOrigin = 'https://timepassuser.github.io'
 allowedHeaders = ["corsproxy", "urltofetch"]
 
 @app.route("/", methods=["GET", "OPTIONS"])
